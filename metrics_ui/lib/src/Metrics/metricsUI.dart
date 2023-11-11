@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:metrics_ui/src/Metrics/pie_echart.dart';
+import 'package:metrics_ui/src/Metrics/Charts/pie_echart.dart';
 import 'package:metrics_ui/src/Metrics/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'package:text_scroll/text_scroll.dart';
-import 'data_points.dart';
-import 'doubleBar_echart.dart';
+import 'DataHandling/data_points.dart';
+import 'Charts/doubleBar_echart.dart';
+import 'DataHandling/metrics_controller.dart';
 import 'goals.dart';
-import 'line_echart.dart';
-import 'metrics_Queue.dart';
-import 'metrics_controller.dart';
+import 'Charts/line_echart.dart';
+import 'DataHandling/metrics_Queue.dart';
 
 class MetricsPage extends StatefulWidget {
   const MetricsPage({super.key});
@@ -83,6 +83,7 @@ class _MetricsPageState extends State<MetricsPage> {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     themeProvider.toggleTheme(themeProvider.isDarkMode);
+
     Color scaffoldColor = themeProvider.scaffoldColor;
     Color textColor = themeProvider.textColor;
     Color buttonColor = themeProvider.buttonColor;

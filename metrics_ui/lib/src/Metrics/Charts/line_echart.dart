@@ -5,7 +5,7 @@ import 'package:metrics_ui/src/Metrics/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_echarts/flutter_echarts.dart';
 
-import 'data_points.dart';
+import '../DataHandling/data_points.dart';
 
 class LineEchart extends StatefulWidget {
   List<DataPoints> data;

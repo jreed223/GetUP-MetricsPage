@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:metrics_ui/src/Metrics/metrics.dart';
+import 'package:metrics_ui/src/Metrics/metricsUI.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Metrics/theme_provider.dart';
 
-Future<void> _loadSavedTheme(ThemeProvider themeProvider) async {
-  final prefs = await SharedPreferences.getInstance();
-  final isDarkTheme = prefs.getBool('isDarkTheme') ?? false;
-  themeProvider.toggleTheme(isDarkTheme);
-}
+//Future<void> _loadSavedTheme(ThemeProvider themeProvider) async {
+//  final prefs = await SharedPreferences.getInstance();
+//  final isDarkTheme = prefs.getBool('isDarkTheme') ?? false;
+//  themeProvider.toggleTheme(isDarkTheme);
+//}
 
 /// The Widget that configures your application.
 class MyApp extends StatefulWidget {

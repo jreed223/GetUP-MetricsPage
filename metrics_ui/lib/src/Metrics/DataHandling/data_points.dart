@@ -1,10 +1,9 @@
 import 'package:flutter/foundation.dart';
 
-import 'metrics_controller.dart';
-
 //import 'goal_organizer.dart';
-import 'goals.dart';
+import '../goals.dart';
 import 'metrics_queue.dart';
+import 'metrics_controller.dart';
 
 // final List _sampleGoalsM = [
 //   LongTermGoal(

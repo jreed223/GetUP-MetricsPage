@@ -18,7 +18,7 @@ class ThemeProvider extends ChangeNotifier {
 
   /// This will be used to toggle between dark and light mode
   /// The default value is false, which means light mode
-  bool _isDarkMode = false;
+  bool _isDarkMode = true;
 
   /// These will be the colors used in the app
 
