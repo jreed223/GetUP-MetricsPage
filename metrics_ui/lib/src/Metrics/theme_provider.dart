@@ -25,6 +25,7 @@ class ThemeProvider extends ChangeNotifier {
   Color _scaffoldColor = const Color.fromARGB(255, 255, 247, 244);
   Color _textColor = Colors.black54;
   Color _buttonColor = const Color.fromARGB(255, 255, 144, 39);
+  Color _unselectedButton = Color.fromARGB(255, 218, 140, 68);
   Color _buttonTextColor = Colors.white;
   Color _buttonIconColor = Colors.white;
   Color _incompleteCardColor = const Color.fromARGB(255, 255, 244, 237);
@@ -53,6 +54,7 @@ class ThemeProvider extends ChangeNotifier {
   Color get scaffoldColor => _scaffoldColor;
   Color get textColor => _textColor;
   Color get buttonColor => _buttonColor;
+  Color get unselectedButton => _unselectedButton;
   Color get buttonTextColor => _buttonTextColor;
   Color get buttonIconColor => _buttonIconColor;
   Color get incompleteCardColor => _incompleteCardColor;

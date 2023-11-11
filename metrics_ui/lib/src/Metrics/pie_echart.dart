@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_echarts/flutter_echarts.dart';
-
 import 'package:metrics_ui/src/Metrics/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -17,13 +16,12 @@ class PieEchart extends StatefulWidget {
 class _PieEchartState extends State<PieEchart> {
   @override
   Widget build(BuildContext context) {
-    //ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
-
-    // if (themeProvider.isDarkMode) {
-       widget.chartTextColor = "#FFFFFF";
-    // } else {
-    //   widget.chartTextColor = "#000000";
-    // }
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    if (themeProvider.isDarkMode) {
+      widget.chartTextColor = "#FFFFFF";
+    } else {
+      widget.chartTextColor = "#000000";
+    }
     return Container(
       padding: const EdgeInsets.all(0),
       alignment: const Alignment(1, 0),

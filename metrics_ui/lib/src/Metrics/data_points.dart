@@ -90,7 +90,7 @@ dynamic setPieData(goalList) {
   String noProgress = '';
   if (goalList.isNotEmpty) {
     for (var goal in goalList) {
-      if ((goal?.isCompleted == false) & (goal.isLongTerm == true)) {
+      if ((goal.isCompleted == false) & (goal.isLongTerm == true)) {
         totalLTduration = totalLTduration + goal.duration;
         totalTimeDedicated = totalTimeDedicated + goal.timeDedicated;
         if (goal.timeDedicated == 0) {
@@ -99,8 +99,8 @@ dynamic setPieData(goalList) {
         String data =
             "{value: ${double.parse((goal.goalTimeDedicated).toStringAsFixed(2))}, name:'${goal.goalTitle}'}";
         pieDataset.add(data);
-      } else if ((goal?.isCompleted == true) & (goal.isLongTerm == true)) {
-        if (((goal.goalCompletionDate?.isBefore(todaysDate)) ||
+      } else if ((goal.isCompleted == true) & (goal.isLongTerm == true)) {
+        if (((goal.goalCompletionDate.isBefore(todaysDate)) ||
                 goal.goalCompletionDate?.isAtSameMomentAs(todaysDate)) &
             goal.goalCompletionDate
                 ?.isAfter(todaysDate.subtract(const Duration(days: 7)))) {

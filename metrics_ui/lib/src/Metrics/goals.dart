@@ -12,7 +12,7 @@ class Goal {
   String title;
 
   /// Whether the goal is completed.
-  bool? isCompleted;
+  bool isCompleted;
 
   /// The date the goal was created.
   DateTime dateCreated;
@@ -25,11 +25,11 @@ class Goal {
 
   Goal({
     required this.title,
-    required bool this.isCompleted,
+    bool? isCompleted,
     DateTime? dateCreated,
     DateTime? dateCompleted,
   })  : dateCreated = dateCreated ?? DateTime.now(),
-        dateCompleted = dateCompleted;
+        isCompleted = isCompleted ?? false;
 
   String get goalTitle => title;
 
@@ -40,7 +40,8 @@ class Goal {
   DateTime get goalCreationDate => dateCreated;
 
   /// Gets the date the goal was completed.
-  DateTime? get goalCompletionDate => dateCompleted;
+  DateTime? get goalCompletionDate =>
+      isCompleted ? (dateCompleted ?? dateCreated) : null;
 }
 
 class LongTermGoal extends Goal {
@@ -56,7 +57,6 @@ class LongTermGoal extends Goal {
   LongTermGoal({
     required String title,
     required this.duration,
-    required bool isCompleted,
     double? progress,
     double? timeDedicated,
     required DateTime dateCreated,
@@ -65,7 +65,6 @@ class LongTermGoal extends Goal {
         progress = timeDedicated! / duration,
         super(
           title: title,
-          isCompleted: isCompleted,
           dateCreated: dateCreated,
           dateCompleted: dateCompleted,
         );
@@ -78,6 +77,13 @@ class LongTermGoal extends Goal {
 
   /// Gets the time dedicated to the goal.
   double get goalTimeDedicated => timeDedicated;
+
+  @override
+  bool get isCompleted => progress == 1 ? isCompleted = true : false;
+
+  @override
+  DateTime? get goalCompletionDate =>
+      isCompleted ? (dateCompleted ?? DateTime.now()) : null;
 
   @override
   bool get isLongTerm => true;

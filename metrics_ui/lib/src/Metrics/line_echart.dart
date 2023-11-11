@@ -19,13 +19,13 @@ class LineEchart extends StatefulWidget {
 class _LineEchartState extends State<LineEchart> {
   @override
   Widget build(BuildContext context) {
-    //ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
 
-    // if (themeProvider.isDarkMode) {
-       widget.chartTextColor = "#FFFFFF";
-    // } else {
-    //   widget.chartTextColor = "#000000";
-    // }
+    if (themeProvider.isDarkMode) {
+      widget.chartTextColor = "#FFFFFF";
+    } else {
+      widget.chartTextColor = "#000000";
+    }
 
     return Container(
       alignment: Alignment.center,

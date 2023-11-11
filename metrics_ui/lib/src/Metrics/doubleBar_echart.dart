@@ -22,13 +22,13 @@ class DoubleBarEchart extends StatefulWidget {
 class _DoubleBarEchartState extends State<DoubleBarEchart> {
   @override
   Widget build(BuildContext context) {
-    //ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
 
-    // if (themeProvider.isDarkMode) {
-       widget.chartTextColor = "#FFFFFF";
-    // } else {
-    //   widget.chartTextColor = "#000000";
-    // }
+    if (themeProvider.isDarkMode) {
+      widget.chartTextColor = "#FFFFFF";
+    } else {
+      widget.chartTextColor = "#000000";
+    }
 
     return Container(
       padding: EdgeInsets.zero,

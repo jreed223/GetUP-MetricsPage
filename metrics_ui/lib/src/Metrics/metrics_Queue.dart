@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -56,46 +58,45 @@ class MetricsQueue {
 
   //----Methods for saving and loading Json data----//
 
-  // saveData(MetricsData metricsData) async {
-  //   SharedPreferences pref = await SharedPreferences.getInstance();
+  saveData(MetricsData metricsData) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
 
-  //   String json = jsonEncode(metricsData);
-  //   String dataDate =
-  //       DateFormat('yyyy-MM-dd').format(metricsData.dataCollectionDate!);
-  //   if (pref.containsKey(dataDate)) {
-  //     deleteData(metricsData.dataCollectionDate!);
-  //   }
-  //   pref.setString(dataDate, json);
-  // }
+    String json = jsonEncode(metricsData);
+    String dataDate =
+        DateFormat('yyyy-MM-dd').format(metricsData.dataCollectionDate!);
+    if (pref.containsKey(dataDate)) {
+      deleteData(metricsData.dataCollectionDate!);
+    }
+    pref.setString(dataDate, json);
+  }
 
-  // loadData(DateTime dataDateTime) async {
-  //   SharedPreferences pref = await SharedPreferences.getInstance();
-  //   String dataDate = DateFormat('yyyy-MM-dd').format(dataDateTime);
+  loadData(DateTime dataDateTime) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String dataDate = DateFormat('yyyy-MM-dd').format(dataDateTime);
 
-  //   if (pref.containsKey(dataDate)) {
-  //     _dataSaved = true;
-  //     String? json = pref.getString(dataDate);
-  //     Map<String, dynamic> data = jsonDecode(json!);
-  //     MetricsData cachedData = MetricsData.fromJson(data);
-  //     cachedData.dataCollectionDate = dataDateTime;
-  //     cachedData.dayOfWeek = DateFormat('EEEE').format(dataDateTime);
-  //     // return cachedData;
-  //     currentMetricsQ.add(cachedData);
-  //     return;
-  //   } else {
-  //     return;
-  //   }
-  // }
+    if (pref.containsKey(dataDate)) {
+      _dataSaved = true;
+      String? json = pref.getString(dataDate);
+      Map<String, dynamic> data = jsonDecode(json!);
+      MetricsData cachedData = MetricsData.fromJson(data);
+      cachedData.dataCollectionDate = dataDateTime;
+      cachedData.dayOfWeek = DateFormat('EEEE').format(dataDateTime);
+      // return cachedData;
+      currentMetricsQ.add(cachedData);
+      return;
+    } else {
+      return;
+    }
+  }
 
-  // deleteData(DateTime dataDateTime) async {
-  //   SharedPreferences pref = await SharedPreferences.getInstance();
-  //   String dataDate = DateFormat('yyyy-MM-dd').format(dataDateTime);
-  //   if (pref.containsKey(dataDate)) {
-  //     pref.remove(dataDate);
-  //   }
-  //   return;
-  //   print("data deleted");
-  // }
+  deleteData(DateTime dataDateTime) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String dataDate = DateFormat('yyyy-MM-dd').format(dataDateTime);
+    if (pref.containsKey(dataDate)) {
+      pref.remove(dataDate);
+    }
+    return;
+  }
 
   // void goalListOrganizer() {
   //   for (var currentGoal in goalList) {

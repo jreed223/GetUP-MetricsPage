@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:metrics_ui/src/Metrics/pie_echart.dart';
 import 'package:metrics_ui/src/Metrics/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'package:text_scroll/text_scroll.dart';
-import 'package:provider/provider.dart';
 import 'data_points.dart';
 import 'doubleBar_echart.dart';
 import 'goals.dart';
@@ -25,27 +25,20 @@ class _MetricsPageState extends State<MetricsPage> {
     LongTermGoal(
       title: 'Learn Flutter',
       duration: 20,
-      isCompleted: false,
       dateCreated: DateTime.now().subtract(const Duration(days: 6)),
       timeDedicated: 10,
-
-      ///dateCompleted: DateTime.now(),
     ),
     LongTermGoal(
       title: 'Read',
       duration: 5,
-      isCompleted: false,
       dateCreated: DateTime.now().subtract(const Duration(days: 2)),
       timeDedicated: 2,
-      //dateCompleted: DateTime.now(),
     ),
     LongTermGoal(
         title: 'Learn Dart',
         duration: 7,
-        isCompleted: true,
         dateCreated: DateTime.now().subtract(const Duration(days: 3)),
-        timeDedicated: 7,
-        dateCompleted: DateTime.now()),
+        timeDedicated: 7),
     Goal(
         title: 'Go to the gym',
         isCompleted: false,
@@ -88,6 +81,13 @@ class _MetricsPageState extends State<MetricsPage> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    themeProvider.toggleTheme(themeProvider.isDarkMode);
+    Color scaffoldColor = themeProvider.scaffoldColor;
+    Color textColor = themeProvider.textColor;
+    Color buttonColor = themeProvider.buttonColor;
+    Color unselectedButton = themeProvider.unselectedButton;
+
     //return Consumer<GoalDataState>(builder: (context, provider, child) {
     List<MetricsData> metricsQueue = MetricsQueue().setMetricsQ(sampleGoalList);
 
@@ -104,13 +104,13 @@ class _MetricsPageState extends State<MetricsPage> {
     //ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 42, 38, 36),
+      backgroundColor: scaffoldColor,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 42, 38, 36),
-        title: const Text('Daily Data',
+        backgroundColor: scaffoldColor,
+        title: Text('Daily Data',
             style: TextStyle(
-                color: Color.fromARGB(255, 255, 247, 244),
+                color: textColor,
                 fontFamily: 'PT-Serif',
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
@@ -170,8 +170,8 @@ class _MetricsPageState extends State<MetricsPage> {
                                 velocity: const Velocity(
                                     pixelsPerSecond: Offset(50, 0)),
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    color: Color.fromARGB(255, 255, 247, 244),
+                                style: TextStyle(
+                                    color: textColor,
                                     fontFamily: 'PT-Serif',
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500),
@@ -238,8 +238,8 @@ class _MetricsPageState extends State<MetricsPage> {
                               alignment: Alignment.bottomCenter,
                               child: Text(
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      color: Color.fromARGB(255, 255, 247, 244),
+                                  style: TextStyle(
+                                      color: textColor,
                                       fontFamily: 'PT-Serif',
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500),
@@ -289,9 +289,9 @@ class _MetricsPageState extends State<MetricsPage> {
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color.fromARGB(255, 42, 38, 36),
-        selectedItemColor: const Color.fromARGB(255, 255, 144, 39),
-        unselectedItemColor: const Color.fromARGB(255, 255, 247, 244),
+        backgroundColor: scaffoldColor,
+        selectedItemColor: buttonColor,
+        unselectedItemColor: unselectedButton,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
